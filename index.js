@@ -7,9 +7,9 @@ const app = express();
 
 app.get('/api/', (req, res) => {
   ffmpeg('videos/birthday01.mp4')
-    .input('videos/names/luna.mp4')
+    .input('videos/names/finn.mp4')
     .input('videos/birthday02.mp4')
-    .input('videos/names/luna.mp4')
+    .input('videos/names/finn.mp4')
     .input('videos/birthday03.mp4')
     .on('error', function(err) {
       console.log('An error occurred: ' + err.message);
