@@ -18,7 +18,7 @@
 
       // video.oncanplay = e => video.play();
 
-      const urls = ["videos/birthday01.webm", "videos/names/alice.webm", "videos/birthday02.webm", "videos/names/alice.webm", "videos/birthday03.webm"];
+      const urls = ["videos/birthday01.webm", "videos/birthday02.webm", "videos/birthday03.webm"];
 
       const request = url => fetch(url).then(response => response.arrayBuffer());
 
@@ -30,7 +30,7 @@
        Uncaught DOMException: Failed to execute 'appendBuffer' on 'SourceBuffer': This SourceBuffer has been removed from the parent media source.
        Uncaught DOMException: Failed to set the 'timestampOffset' property on 'SourceBuffer': This SourceBuffer has been removed from the parent media source.
       */
-      const mimeCodec = "video/webm; codecs=opus";
+      const mimeCodec = 'video/webm; codecs="vp9,opus"';
       // https://stackoverflow.com/questions/14108536/how-do-i-append-two-video-files-data-to-a-source-buffer-using-media-source-api/
       //const mimeCodec = "video/mp4; codecs=avc1.42E01E, mp4a.40.2";
 
