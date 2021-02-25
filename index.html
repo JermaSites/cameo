@@ -2,19 +2,21 @@
 <html>
 
 <head>
+<script src="https://unpkg.com/blob-util/dist/blob-util.min.js"></script>
+<script src="https://raw.githack.com/yusitnikov/fix-webm-duration/master/fix-webm-duration.js"></script>
 </head>
 
 <body>
   <br>
-  <video controls="true" autoplay="true"></video>
+  <video id="videoTag" onplay="recordMe()" onended="done()" controls="true" autoplay="true"></video>
 
   <script>
+  
     (async() => {
-
 
       const mediaSource = new MediaSource();
 
-      const video = document.querySelector("video");
+      const video = document.getElementById("videoTag");
 
       // video.oncanplay = e => video.play();
 
@@ -67,6 +69,7 @@
                 sourceBuffer.onupdateend = null;
                 sourceBuffer.timestampOffset += chunk.mediaDuration;
                 console.log(mediaSource.duration);
+                console.log(mediaSource);
                 resolve()
               }
             })
@@ -74,7 +77,6 @@
           }
 
           mediaSource.endOfStream();
-
         }  
         else {
           console.warn(mimeCodec + " not supported");
@@ -82,6 +84,66 @@
       };
 
     })()
+
+      var mediaRecorder;
+      var mediaParts;
+      var startTime;
+      const video = document.getElementById("videoTag");
+      // Optional frames per second argument.
+
+      var stream = video.captureStream(60);
+      //var stream = video.mozCaptureStream(60);
+
+      var options = { 
+        mimeType: 'video/webm; codecs="vp9,opus"'
+      };
+      
+      function startRecording(stream, options) {
+          mediaParts = [];
+          mediaRecorder = new MediaRecorder(stream, options);
+          mediaRecorder.onstop = function() {
+              var duration = Date.now() - startTime;
+              var buggyBlob = new Blob(mediaParts, { type: 'video/webm' });
+              
+              ysFixWebmDuration(buggyBlob, duration, function(fixedBlob) {
+                  displayResult(fixedBlob);
+              });
+          };
+          mediaRecorder.ondataavailable = function(event) {
+              var data = event.data;
+              if (data && data.size > 0) {
+                  mediaParts.push(data);
+              }
+          };
+          mediaRecorder.start();
+          startTime = Date.now();
+      }
+
+      function stopRecording() {
+          mediaRecorder.stop();
+      }
+
+      function displayResult(fixedBlob) {
+        var url = URL.createObjectURL(fixedBlob);
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+        a.style = "display: none";
+        a.href = url;
+        a.download = "test.webm";
+        a.click();
+        window.URL.revokeObjectURL(url);
+      }
+    
+    function recordMe() {
+      startRecording(stream, options);
+    }
+
+    function done() {
+      mediaRecorder.stop();
+    }
+    
+
+
   </script>
 
 
