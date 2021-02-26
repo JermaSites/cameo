@@ -1,12 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
+
+@font-face {
+    font-family: 'SRF2';
+    src: url('SRF2.ttf') format('truetype');
+}
+
 body {
     margin: 0;
     padding: 0;
     overflow: hidden;
 }
 
-main {
+#wrapper {
     width: 100%;
     height: 100%;
+}
+
+#main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#box {
+    width: calc(25vw + 50vh);
+    height: 90%;
+    background-color: #1ac4aa;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Oswald', sans-serif;
+    margin-top: 15px;
+}
+
+
+#largeheader {
+    font-weight: 700;
+    line-height: 15vh;
+    font-size: 15vh;
+    /* letter-spacing: 5px; */
+}
+
+#subheader {
+    font-size: 2em;
+    text-align: center;
+    margin: auto;
+}
+
+#susJerma {
+    width: 50%;
+    height: 50%;
+}
+
+#imageWrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#imageWrapper > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5%;
+    object-fit: fill;
+}
+
+#button {
+    width: auto;
+    height: 10%;
+    background-color: #b2376d;
+    border-radius: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3vh;
+    font-family: 'SRF2';
+    color: white;
+    font-size: 9vh;
+    padding: 2%;
 }
 
 #background-overlay {
@@ -15,7 +105,7 @@ main {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 50;
+    z-index: -1;
 }
 
 #sliding-background {
@@ -25,8 +115,31 @@ main {
     height: 100%;
     animation: slide 120s linear infinite;
     filter: blur(2.5px);
+    z-index: -2;
 }
 
+#jerma-corner {
+    width: auto;
+    height: calc(25vw + 10vh);
+    bottom: 0;
+    right: 0;
+    position: absolute;
+}
+
+#jerma-corner > video {
+    height: 100%;
+    bottom: 0;
+    right: 0;
+    object-fit: cover;
+}
+
+#jerma-corner > img {
+    position: absolute;
+    object-fit: contain;
+    width: 60%;
+    top: -5%;
+    left: -5%;
+}
 
 @keyframes slide {
     0% {
