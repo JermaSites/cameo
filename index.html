@@ -1,90 +1,32 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html class="no-js" lang="en">
 
 <head>
+  <meta charset="utf-8">
+  <title>FREE Jerma Cameo (Imposter Sus Guy)</title>
+  <meta name="description" content="FREE Happy Birthday or Anniversary Message from the 'When the imposter is sus!' guy!!">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
-  <br>
-  <video controls="true" autoplay="true"></video>
-
-  <script>
-    (async() => {
-
-
-      const mediaSource = new MediaSource();
-
-      const video = document.querySelector("video");
-
-      // video.oncanplay = e => video.play();
-
-      const urls = ["videos/birthday01.webm", "videos/names/alice.webm", "videos/birthday02.webm", "videos/names/alice.webm", "videos/birthday03.webm"];
-
-      const request = url => fetch(url).then(response => response.arrayBuffer());
-
-      // `urls.reverse()` stops at `.currentTime` : `9`
-      const files = await Promise.all(urls.map(request));
-
-      /*
-       `.webm` files
-       Uncaught DOMException: Failed to execute 'appendBuffer' on 'SourceBuffer': This SourceBuffer has been removed from the parent media source.
-       Uncaught DOMException: Failed to set the 'timestampOffset' property on 'SourceBuffer': This SourceBuffer has been removed from the parent media source.
-      */
-      const mimeCodec = "video/webm; codecs=opus";
-      // https://stackoverflow.com/questions/14108536/how-do-i-append-two-video-files-data-to-a-source-buffer-using-media-source-api/
-      //const mimeCodec = "video/mp4; codecs=avc1.42E01E, mp4a.40.2";
-
-
-      const media = await Promise.all(files.map(file => {
-        return new Promise(resolve => {
-          let media = document.createElement("video");
-          let blobURL = URL.createObjectURL(new Blob([file]));
-          media.onloadedmetadata = async e => {
-            resolve({
-              mediaDuration: media.duration,
-              mediaBuffer: file
-            })
-          }
-          media.src = blobURL;
-        })
-      }));
-
-      console.log(media);
-
-      mediaSource.addEventListener("sourceopen", sourceOpen);
-
-      video.src = URL.createObjectURL(mediaSource);
-
-      async function sourceOpen(event) {
-
-        if (MediaSource.isTypeSupported(mimeCodec)) {
-          const sourceBuffer = mediaSource.addSourceBuffer(mimeCodec);
-
-          for (let chunk of media) {
-            await new Promise(resolve => {
-              sourceBuffer.appendBuffer(chunk.mediaBuffer);
-              sourceBuffer.onupdateend = e => {
-                sourceBuffer.onupdateend = null;
-                sourceBuffer.timestampOffset += chunk.mediaDuration;
-                console.log(mediaSource.duration);
-                resolve()
-              }
-            })
-
-          }
-
-          mediaSource.endOfStream();
-
-        }  
-        else {
-          console.warn(mimeCodec + " not supported");
-        }
-      };
-
-    })()
-  </script>
-
-
+  <div id="main">
+    <div id="sliding-background">
+      <img src="images/1t7gixxwnti51.png">
+      <img src="images/7Q0Fxy2Z.jpg">
+      <img src="images/Evil_Jerma.png">
+      <img src="images/il70ob4auj601.png">
+      <img src="images/image.jpg">
+      <img src="images/image0.jpg">
+      <img src="images/image1.jpg">
+      <img src="images/The_Thing_Face_-_Jerma_Moments.png">
+      <img src="images/-EhquWkoXq0lCDlSdZZj0BMdQqqhhWiLPhW402IjT5k.png">
+    </div>
+  </div>
+  <!-- <video id="videoTag" onplay="recordMe()" pause="pause()" autoplay="true"></video> -->
+  <!-- <script src="scripts.js"></script> -->
+  <script src="visuals.js"></script>
 </body>
 
 </html>
