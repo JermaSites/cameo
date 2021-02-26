@@ -2,25 +2,45 @@
 <html>
 
 <head>
-<script src="https://unpkg.com/blob-util/dist/blob-util.min.js"></script>
 <script src="https://raw.githack.com/yusitnikov/fix-webm-duration/master/fix-webm-duration.js"></script>
 </head>
 
 <body>
   <br>
-  <video id="videoTag" onplay="recordMe()" onended="done()" controls="true" autoplay="true"></video>
+  <video id="videoTag" onplay="recordMe()" pause="pause()" autoplay="true"></video>
 
   <script>
-  
+    
+    const video = document.getElementById("videoTag");
+    const chunks = [];
+
+    if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+      var stream = video.mozCaptureStream(60);
+    } else {
+      var stream = video.captureStream(60);
+    }
+
+    const rec = new MediaRecorder(stream);
+
+    video.oncanplay = e => {
+      rec.ondataavailable = e => chunks.push(e.data);
+      rec.onstop = e => {
+        stream.getTracks().forEach(stream => stream.stop());
+        exportVid();
+      };
+      //video.play();
+    }
+
+    function recordMe() {
+      rec.start();
+    }
+
     (async() => {
 
       const mediaSource = new MediaSource();
 
-      const video = document.getElementById("videoTag");
-
-      // video.oncanplay = e => video.play();
-
-      const urls = ["videos/birthday01.webm", "videos/birthday02.webm", "videos/birthday03.webm"];
+      const urls = ["videos/birthday01.webm", "videos/birthday02.webm"];
+      //const urls = ["videos/birthday01.webm"];
 
       const request = url => fetch(url).then(response => response.arrayBuffer());
 
@@ -85,63 +105,23 @@
 
     })()
 
-      var mediaRecorder;
-      var mediaParts;
-      var startTime;
-      const video = document.getElementById("videoTag");
-      // Optional frames per second argument.
-
-      var stream = video.captureStream(60);
-      //var stream = video.mozCaptureStream(60);
-
-      var options = { 
-        mimeType: 'video/webm; codecs="vp9,opus"'
-      };
-      
-      function startRecording(stream, options) {
-          mediaParts = [];
-          mediaRecorder = new MediaRecorder(stream, options);
-          mediaRecorder.onstop = function() {
-              var duration = Date.now() - startTime;
-              var buggyBlob = new Blob(mediaParts, { type: 'video/webm' });
-              
-              ysFixWebmDuration(buggyBlob, duration, function(fixedBlob) {
-                  displayResult(fixedBlob);
-              });
-          };
-          mediaRecorder.ondataavailable = function(event) {
-              var data = event.data;
-              if (data && data.size > 0) {
-                  mediaParts.push(data);
-              }
-          };
-          mediaRecorder.start();
-          startTime = Date.now();
-      }
-
-      function stopRecording() {
-          mediaRecorder.stop();
-      }
-
-      function displayResult(fixedBlob) {
-        var url = URL.createObjectURL(fixedBlob);
-        var a = document.createElement("a");
-        document.body.appendChild(a);
-        a.style = "display: none";
-        a.href = url;
-        a.download = "test.webm";
-        a.click();
-        window.URL.revokeObjectURL(url);
-      }
-    
-    function recordMe() {
-      startRecording(stream, options);
-    }
-
-    function done() {
-      mediaRecorder.stop();
-    }
-    
+    function exportVid() {
+      const blob = new Blob(chunks);
+      const url = URL.createObjectURL(blob);
+      const vid = document.createElement('video');
+      vid.src = url;
+      vid.controls = true;
+      // chrome duration workaround
+      vid.play().then(() => {
+        vid.currentTime = 10e99;
+        vid.onseeked = () => {
+          vid.currentTime = 0;
+          vid.pause();
+          vid.onseeked = null;
+        }
+      });
+      document.body.appendChild(vid);
+    }    
 
 
   </script>
