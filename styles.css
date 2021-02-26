@@ -1,0 +1,34 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+}
+
+#sliding-background {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    height: 100%;
+    animation: slide 30s linear infinite;
+}
+
+@keyframes slide {
+    0% {
+        transform: translate(0%);
+    }
+    50% {
+        transform: translate(-45%);
+    }
+    100% {
+        transform: translate(0%);
+    }
+}
+
+#sliding-background > img {
+    flex: 1;
+}
