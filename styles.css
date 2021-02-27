@@ -49,8 +49,9 @@ body {
 
 #largeheader {
     font-weight: 700;
-    line-height: 15vh;
-    font-size: 15vh;
+    line-height: 8vh;
+    font-size: 8vh;
+    text-align: center;
     /* letter-spacing: 5px; */
 }
 

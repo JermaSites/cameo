@@ -72,6 +72,8 @@ function recordMe() {
       for (let chunk of media) {
         await new Promise(resolve => {
           sourceBuffer.appendBuffer(chunk.mediaBuffer);
+          console.log(chunk.mediaBuffer);
+          console.log(chunk);
           sourceBuffer.onupdateend = e => {
             sourceBuffer.onupdateend = null;
             sourceBuffer.timestampOffset += chunk.mediaDuration;
