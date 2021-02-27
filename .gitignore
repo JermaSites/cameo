@@ -115,3 +115,8 @@ dist
 .yarn/install-state.gz
 .pnp.*
 videos/out.mp4
+serve/anniversary_nick_jeremy.webm
+serve/anniversary_otto_jeremy.webm
+serve/anniversary_otto_nick.webm
+serve/birthday_type01_otto.webm
+serve/birthday_type02_otto.webm

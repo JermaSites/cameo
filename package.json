@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/JermaSites/cameo#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "fluent-ffmpeg": "^2.1.2"
+    "video-stitch": "^1.6.0"
   }
 }
