@@ -3,6 +3,11 @@ function slideOut() {
   document.getElementById("request-page").style.display = "flex";
   document.getElementById("request-page").classList.add("slideIn");
   document.getElementById("fake-box").style.pointerEvents = "revert";
+  if(document.getElementById("type").value === "anniversary") {
+    document.getElementById("name2selector").style.display = "revert";
+  } else {
+    document.getElementById("name2selector").style.display = "none";
+  }
 }
 
 var keyframes = "@keyframes slideJS {0% {transform: translate(0px);}50% {transform: translate(-" + (document.getElementById("sliding-background").offsetWidth - Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)) + "px);}100% {transform: translate(0px);}}"; //congrats!! you found the ugliest line of code in this whole project!!!
@@ -148,6 +153,7 @@ function evaluateMedia() {
 				break;
 			
 			case "birthday_type02":
+        document.getElementById("name2selector").style.display = "none";
 				clips.push("videos/birthday_type02_01.webm");
 				clips.push("videos/names/" + name1 + ".webm");
 				clips.push("videos/birthday_type02_02.webm");
