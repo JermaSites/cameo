@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 		res.set("Content-Disposition", "attachment;filename=" + outputNameAsString);
 		res.attachment(outputNameAsString);
 		res.sendFile(outputNameAsString, {
-			root: __dirname
+			root: __dirname + "/serve"
 		});
 	} else {
 
