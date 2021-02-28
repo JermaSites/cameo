@@ -9,7 +9,7 @@
 		 content='width=device-width, initial-scale=1.0, maximum-scale=1.0, 
 		 user-scalable=0' >
 	<link rel="stylesheet" href="styles.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="preload" href="SRF2.ttf" as="font" crossorigin="anonymous">
 </head>
 
 <body>
@@ -36,7 +36,9 @@
 						</div>
 					</button>
 				</div>
+			</div>
 
+			<div id="fake-box">
 				<div id="request-page">
 					<div id="type-select">
 						<label for="type">TYPE:</label>
@@ -62,16 +64,16 @@
 					</div>
 
 					<div id="preview">
-						<video controls="true" autoplay="true" style="display: none;">
+						<video controls="true" autoplay="true" poster="/images/preview.png">
 						</video>
-					</div>	  
-					
-				</div>
+					</div>	 
+			</div> 
+				
 			</div>
 		</div>
 		<div id="jerma-corner">
 			<img src="images/jerma-says.png">
-			<video src="/images/jerma_ad.webm" alt="" loop="" autoplay="" muted="" playsinline="" disablepictureinpicture="" disableremoteplayback="">
+			<video src="/images/jerma_ad.webm" alt="" loop="" autoplay="" muted="" playsinline="" disablepictureinpicture="" disableremoteplayback="" poster="/images/jerma_ad.webp"> <!-- fallback image for devices that don't support webms (ios) -->
 			</video>
 		</div>
 		<div id="background-overlay">
@@ -91,7 +93,6 @@
 		</div>
 
 	</div>
-	<!-- <video id="videoTag" onplay="recordMe()" pause="pause()" autoplay="true"></video> -->
 	<script src="scripts.js"></script>
 </body>
 
