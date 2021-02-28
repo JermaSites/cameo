@@ -70,6 +70,15 @@ app.get('/', (req, res) => {
 
 		// console.log(clips);
 		console.log("producing new video " + outputNameAsString);
+		
+		// FFMpeg doesn't like relative urls, especially in 3rd-party modules, so we'll convert them to absolute instead
+		clips = clips.map(i => {
+			return {
+				i.fileName = __dirname + "/" + i.fileName;
+				return i;
+			};	
+		});
+		
 		videoConcat({
 			silent: true, // if set to false, gives detailed output on console
 			overwrite: true //lets keep this at true just on the off chance that checking if the file exists fails
