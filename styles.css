@@ -188,6 +188,7 @@ video {
     min-width: 4em;
     padding: 2%;
     height: auto;
+    font-family: 'Oswald', sans-serif;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -212,12 +213,12 @@ video {
     background-color: #8b2d56;
     border-radius: 25px;
     font-size: 5vh;
-    font-family: 'SRF2';
+    font-family: 'Oswald', sans-serif;
     border: none;
     text-align: center;
     text-align-last: center;
     -webkit-appearance: none;
-    font-family: 'SRF2';
+    font-family: 'Oswald', sans-serif;
     -moz-appearance: none;
     cursor: pointer;
 }
@@ -251,6 +252,7 @@ video {
     background-color: #b2376d;
     border-radius: 25px;
     font-size: 5vh;
+    font-family: 'Oswald', sans-serif;
     text-align: center;
     flex-wrap: wrap;
 }
@@ -264,6 +266,7 @@ video {
     padding-left: 2%;
     width: auto;
     color: white;
+    font-family: 'Oswald', sans-serif;
     font-weight: bold;
     text-align: center;
 }
@@ -274,7 +277,7 @@ video {
     background-color: #8b2d56;
     border-radius: 25px;
     font-size: 5vh;
-    font-family: 'SRF2';
+    font-family: 'Oswald', sans-serif;
     border: none;
     text-align: center;
     text-align-last: center;
