@@ -183,7 +183,7 @@ video {
 
 #type-select {
     width: 60%;
-    min-width: 300px;
+    min-width: 4em;
     padding: 2%;
     height: auto;
     display: flex;
