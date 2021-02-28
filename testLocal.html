@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+  <label for="type">Type:</label>
+  <select id="type" name="type" onchange="evaluateMedia()">
+    <option value="anniversary">Anniversary message</option>
+    <option value="birthday_type01">Birthday (type 1)</option>
+    <option value="birthday_type02">Birthday (type 2)</option>
+  </select>  
+  
+  <br>
+
+  <label for="name1">Name One:</label>
+  <select id="name1" name="name1" onchange="evaluateMedia()">
+
+  </select>  
+  
+  <label for="name2">Name Two:</label>
+  <select id="name2" name="name2" onchange="evaluateMedia()">
+    
+  </select>
+
+  <br>
+
+  <video controls="true" autoplay="true" style="display: none;"></video>
+  <script src="testLocal.js"></script>
+</body>
+
+</html>
