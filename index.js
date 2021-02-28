@@ -16,7 +16,7 @@ if (!fs.existsSync(serveDir)){
 	fs.mkdirSync(serveDir);
 }
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
 	var clips = new Array();
 	var outputNameAsString = [req.query.type, req.query.name1, req.query.name2].filter(Boolean).join("_") + ".webm"; //we use .filter and .join instead of concatenate because name2 might not always exist
 	
