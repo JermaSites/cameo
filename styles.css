@@ -2,7 +2,11 @@
 
 @font-face {
     font-family: 'SRF2';
-    src: url('SRF2.ttf') format('truetype');
+    src: url('SharkRandomFunnyness2.woff2') format('woff2'),
+        url('SharkRandomFunnyness2.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 body {
@@ -70,7 +74,7 @@ body {
 }
 
 #subheader {
-    font-size: 1.5em;
+    font-size: 4vh;
     text-align: center;
     margin: auto;
     max-width: 85%;
@@ -203,7 +207,6 @@ video {
     background-color: #8b2d56;
     border-radius: 25px;
     font-size: 5vh;
-    padding: auto;
     font-family: 'SRF2';
     border: none;    
     text-align: center;
@@ -266,7 +269,6 @@ video {
     background-color: #8b2d56;
     border-radius: 25px;
     font-size: 5vh;
-    padding: auto;
     font-family: 'SRF2';
     border: none;    
     text-align: center;
