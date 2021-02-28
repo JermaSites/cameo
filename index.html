@@ -2,64 +2,97 @@
 <html class="no-js" lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>FREE Jerma Cameo (Imposter Sus Guy)</title>
-  <meta name="description" content="FREE Happy Birthday or Anniversary Message from the 'When the imposter is sus!' guy!!">
-  <meta name='viewport' 
-     content='width=device-width, initial-scale=1.0, maximum-scale=1.0, 
-     user-scalable=0' >
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<meta charset="utf-8">
+	<title>FREE Jerma Cameo (Imposter Sus Guy)</title>
+	<meta name="description" content="FREE Happy Birthday or Anniversary Message from the 'When the imposter is sus!' guy!!">
+	<meta name='viewport' 
+		 content='width=device-width, initial-scale=1.0, maximum-scale=1.0, 
+		 user-scalable=0' >
+	<link rel="stylesheet" href="styles.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
-  <div id="wrapper">
-    <div id="main">
-      <div id="box">
-        <div id="header">
-          <div id="largeheader">
-            YOUR PERSONAL MESSAGE!!
-          </div>
-          <div id="subheader">
-            FREE Happy Birthday or Anniversary Message from the 'When the imposter is sus!' guy!!
-          </div>
-        </div>
-        <div id="susJerma">
-          <div id="imageWrapper">
-            <img src="images/sus.png">
-          </div>
-        </div>
-        <div id="button">
-          <div>
-            BEGIN!
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="jerma-corner">
-      <img src="images/jerma-says.png">
-      <video src="/images/jerma_ad.webm" alt="" loop="" autoplay="" muted="" playsinline="" disablepictureinpicture="" disableremoteplayback="">
-      </video>
-    </div>
-    <div id="background-overlay">
-    </div>
-    <div id="sliding-background">
-      <img src="images/1t7gixxwnti51.png">
-      <img src="images/7Q0Fxy2Z.jpg">
-      <img src="images/Evil_Jerma.png">
-      <img src="images/il70ob4auj601.png">
-      <img src="images/image.jpg">
-      <img src="images/image0.jpg">
-      <img src="images/image1.jpg">
-      <img src="images/-EhquWkoXq0lCDlSdZZj0BMdQqqhhWiLPhW402IjT5k.png">
-      <img src="images/8thtvj0.png">
-      <img src="images/18hIJLh.png">
-      <img src="images/1EmSXX5.png">
-    </div>
+	<div id="wrapper">
+		<div id="main">
+			<div id="box">
+				<div id="start-page">
+					<div id="header">
+						<div id="largeheader">
+							YOUR PERSONAL MESSAGE!!
+						</div>
+						<div id="subheader">
+							FREE Happy Birthday or Anniversary Message from the 'When the imposter is sus!' guy!!
+						</div>
+					</div>
+					<div id="susJerma">
+						<div id="imageWrapper">
+							<img src="images/sus.png">
+						</div>
+					</div>
+					<button id="button" onclick="slideOut()">
+						<div>
+							BEGIN!
+						</div>
+					</button>
+				</div>
 
-  </div>
-  <!-- <video id="videoTag" onplay="recordMe()" pause="pause()" autoplay="true"></video> -->
-  <!-- <script src="scripts.js"></script> -->
+				<div id="request-page">
+					<div id="type-select">
+						<label for="type">TYPE:</label>
+						<select id="type" name="type" onchange="evaluateMedia()">
+							<option value="anniversary">Anniversary message</option>
+							<option value="birthday_type01">Birthday (type 1)</option>
+							<option value="birthday_type02">Birthday (type 2)</option>
+						</select>  
+					</div>
+
+					<div id="name-select">
+						<div class="name-select">
+							<label for="name1">Name:&nbsp;</label>
+							<select id="name1" name="name1" onchange="evaluateMedia()">
+							</select>  
+						</div>
+
+						<div id="name2selector" class="name-select">
+							<label for="name2">Name:&nbsp;</label>
+							<select id="name2" name="name2" onchange="evaluateMedia()">
+							</select>
+						</div>
+					</div>
+
+					<div id="preview">
+						<video controls="true" autoplay="true" style="display: none;">
+						</video>
+					</div>	  
+					
+				</div>
+			</div>
+		</div>
+		<div id="jerma-corner">
+			<img src="images/jerma-says.png">
+			<video src="/images/jerma_ad.webm" alt="" loop="" autoplay="" muted="" playsinline="" disablepictureinpicture="" disableremoteplayback="">
+			</video>
+		</div>
+		<div id="background-overlay">
+		</div>
+		<div id="sliding-background">
+			<img src="images/1t7gixxwnti51.png">
+			<img src="images/7Q0Fxy2Z.jpg">
+			<img src="images/Evil_Jerma.png">
+			<img src="images/il70ob4auj601.png">
+			<img src="images/image.jpg">
+			<img src="images/image0.jpg">
+			<img src="images/image1.jpg">
+			<img src="images/-EhquWkoXq0lCDlSdZZj0BMdQqqhhWiLPhW402IjT5k.png">
+			<img src="images/8thtvj0.png">
+			<img src="images/18hIJLh.png">
+			<img src="images/1EmSXX5.png">
+		</div>
+
+	</div>
+	<!-- <video id="videoTag" onplay="recordMe()" pause="pause()" autoplay="true"></video> -->
+	<script src="scripts.js"></script>
 </body>
 
 </html>

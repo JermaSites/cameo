@@ -1,114 +1,145 @@
-const video = document.getElementById("videoTag");
-const chunks = [];
-
-if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
-  var stream = video.mozCaptureStream(60);
-} else {
-  var stream = video.captureStream(60);
+function slideOut() {
+  document.getElementById("start-page").classList.add("slideOut");
 }
 
-const rec = new MediaRecorder(stream);
+const names = ["angus.webm","david.webm","josephine.webm","kennedy.webm","luna.webm","nick.webm","xavier.webm","yusef.webm","zachary.webm","alice.webm","alec.webm","alex.webm","alexander.webm","amy.webm","andrew.webm","andy.webm","anthony.webm","arthur.webm","ava.webm","avery.webm","becca.webm","benjamin.webm","briana.webm","brooklyn.webm","caiden.webm","caitlyn.webm","carter.webm","case.webm","catherine.webm","charlotte.webm","client.webm","cody.webm","colton.webm","crystal.webm","daniel.webm","darrell.webm","dave.webm","davy.webm","delia.webm","delilah.webm","ed.webm","eddie.webm","edward.webm","elijah.webm","emily.webm","emma.webm","evan.webm","faith.webm","finn.webm","fredrick.webm","gary.webm","goku.webm","grace.webm","grayson.webm","greg.webm","harper.webm","henry.webm","isabella.webm","issac.webm","jeremy.webm","jerry.webm","jesse.webm","joe.webm","john.webm","joseph.webm","josh.webm","joshua.webm","julie.webm","keith.webm","kyle.webm","lauren.webm","laurence.webm","liam.webm","lilly.webm","logan.webm","louis.webm","luke.webm","mark.webm","mason.webm","matt.webm","matthew.webm","mia.webm","mike.webm","miranda.webm","natalie.webm","noah.webm","norah.webm","oliver.webm","olivia.webm","otto.webm","parker.webm","peter.webm","preston.webm","quinn.webm","riley.webm","rosie.webm","ryan.webm","sebastian.webm","sidney.webm","sophia.webm","steve.webm","steven.webm","taylor.webm","thanos.webm","theodore.webm","tiffany.webm","trevor.webm","tyler.webm","unique.webm","uriel.webm","vanellope.webm","victor.webm","victoria.webm","vincent.webm","william.webm","willow.webm","yuritzi.webm","zain.webm","zimena.webm","zoe.webm"].sort();
+const heyNames = ["angus.webm","david.webm","josephine.webm","kennedy.webm","luna.webm","nick.webm","paul.webm","xavier.webm","yusef.webm","zachary.webm"];
+// This stuff is used to generate the above arrays using brfs and browserify
 
-video.oncanplay = e => {
-  rec.ondataavailable = e => chunks.push(e.data);
-  rec.onstop = e => {
-    stream.getTracks().forEach(stream => stream.stop());
-    exportVid();
-  };
-  //video.play();
+// const fs = require('fs');
+// const names = fs.readdirSync('videos/names').sort();
+// const heyNames = fs.readdirSync('videos/names/hey');
+
+
+const capitalize = (s) => { //stolen from https://flaviocopes.com/how-to-uppercase-first-letter-javascript/
+	if (typeof s !== 'string') return ''
+	return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
-function recordMe() {
-  rec.start();
+for(var i = 0; i < names.length; i++) {
+	var nameWithoutExtension = names[i].split('.').slice(0, -1).join('.');
+	var newOption = document.createElement("option");
+	newOption.value = nameWithoutExtension;
+	newOption.innerHTML = capitalize(nameWithoutExtension);
+	document.getElementById("name1").appendChild(newOption);
 }
 
-(async() => {
-
-  const mediaSource = new MediaSource();
-
-  const urls = ["videos/birthday01.webm", "videos/birthday02.webm"];
-  //const urls = ["videos/birthday01.webm"];
-
-  const request = url => fetch(url).then(response => response.arrayBuffer());
-
-  // `urls.reverse()` stops at `.currentTime` : `9`
-  const files = await Promise.all(urls.map(request));
-
-  /*
-   `.webm` files
-   Uncaught DOMException: Failed to execute 'appendBuffer' on 'SourceBuffer': This SourceBuffer has been removed from the parent media source.
-   Uncaught DOMException: Failed to set the 'timestampOffset' property on 'SourceBuffer': This SourceBuffer has been removed from the parent media source.
-  */
-  const mimeCodec = 'video/webm; codecs="vp9,opus"';
-  // https://stackoverflow.com/questions/14108536/how-do-i-append-two-video-files-data-to-a-source-buffer-using-media-source-api/
-  //const mimeCodec = "video/mp4; codecs=avc1.42E01E, mp4a.40.2";
+for(var i = 0; i < names.length; i++) {
+	var nameWithoutExtension = names[i].split('.').slice(0, -1).join('.');
+	var newOption = document.createElement("option");
+	newOption.value = nameWithoutExtension;
+	newOption.innerHTML = capitalize(nameWithoutExtension);
+	document.getElementById("name2").appendChild(newOption); //apparently you cant just append an object to multiple elements
+}
 
 
-  const media = await Promise.all(files.map(file => {
-    return new Promise(resolve => {
-      let media = document.createElement("video");
-      let blobURL = URL.createObjectURL(new Blob([file]));
-      media.onloadedmetadata = async e => {
-        resolve({
-          mediaDuration: media.duration,
-          mediaBuffer: file
-        })
-      }
-      media.src = blobURL;
-    })
-  }));
+async function generateMedia(urls) { //https://stackoverflow.com/a/57652610
 
-  console.log(media);
+	const mediaSource = new MediaSource();
 
-  mediaSource.addEventListener("sourceopen", sourceOpen);
+	const video = document.querySelector("video");
 
-  video.src = URL.createObjectURL(mediaSource);
+	const request = url => fetch(url).then(response => response.arrayBuffer());
 
-  async function sourceOpen(event) {
+	const files = await Promise.all(urls.map(request));
 
-    if (MediaSource.isTypeSupported(mimeCodec)) {
-      const sourceBuffer = mediaSource.addSourceBuffer(mimeCodec);
+	const mimeCodec = 'video/webm; codecs="vp9,opus"'; //https://stackoverflow.com/questions/14108536/how-do-i-append-two-video-files-data-to-a-source-buffer-using-media-source-api/
 
-      for (let chunk of media) {
-        await new Promise(resolve => {
-          sourceBuffer.appendBuffer(chunk.mediaBuffer);
-          console.log(chunk.mediaBuffer);
-          console.log(chunk);
-          sourceBuffer.onupdateend = e => {
-            sourceBuffer.onupdateend = null;
-            sourceBuffer.timestampOffset += chunk.mediaDuration;
-            console.log(mediaSource.duration);
-            console.log(mediaSource);
-            resolve()
-          }
-        })
+	const media = await Promise.all(files.map(file => {
+	  return new Promise(resolve => {
+		let media = document.createElement("video");
+		let blobURL = URL.createObjectURL(new Blob([file]));
+		media.onloadedmetadata = async e => {
+		  resolve({
+			mediaDuration: media.duration,
+			mediaBuffer: file
+		  })
+		}
+		media.src = blobURL;
+	  })
+	}));
 
-      }
+	console.log(media);
 
-      mediaSource.endOfStream();
-    }  
-    else {
-      console.warn(mimeCodec + " not supported");
-    }
+	mediaSource.addEventListener("sourceopen", sourceOpen);
+
+	video.src = URL.createObjectURL(mediaSource);
+	video.style.display = "revert";
+
+	async function sourceOpen(event) {
+
+	  if (MediaSource.isTypeSupported(mimeCodec)) {
+		const sourceBuffer = mediaSource.addSourceBuffer(mimeCodec);
+
+		for (let chunk of media) {
+		  await new Promise(resolve => {
+			sourceBuffer.appendBuffer(chunk.mediaBuffer);
+			sourceBuffer.onupdateend = e => {
+			  sourceBuffer.onupdateend = null;
+			  sourceBuffer.timestampOffset += chunk.mediaDuration;
+			  console.log(mediaSource.duration);
+			  resolve()
+			}
+		  })
+
+		}
+
+		mediaSource.endOfStream();
+
+	  }  
+	  else {
+		console.warn(mimeCodec + " not supported");
+	  }
+	}
+
   }
 
-})()
+function evaluateMedia() {
+  const video = document.querySelector("video");
+  video.src = "";
 
-function exportVid() {
-  const blob = new Blob(chunks);
-  const url = URL.createObjectURL(blob);
-  const vid = document.createElement('video');
-  vid.src = url;
-  vid.controls = true;
-  // chrome duration workaround
-  vid.play().then(() => {
-    vid.currentTime = 10e99;
-    vid.onseeked = () => {
-      vid.currentTime = 0;
-      vid.pause();
-      vid.onseeked = null;
-    }
-  });
-  document.body.appendChild(vid);
-}    
+	type = document.getElementById("type").value;
+	name1 = document.getElementById("name1").value;
+	name2 = document.getElementById("name2").value;
+  
+	if (type != "" && name1 != "" && name2 != "") {
+		var clips = new Array();
+		switch (type) {
+			case "anniversary":
+        document.getElementById("name2selector").style.display = "revert";
+				if (heyNames.includes(name1 + '.webm')) { //we always want anniversary videos to start with "hey" if we can
+					clips.push("videos/names/hey/" + name1 + ".webm"); //rather than stripping every single file name in the array of the phrase ".webm", lets just compare with .webm added
+					clips.push("videos/and.webm");
+					clips.push("videos/names/" + name2 + ".webm");
+				} else if (heyNames.includes(name2 + '.webm')) {
+					clips.push("videos/names/hey/" + name2 + ".webm");
+					clips.push("videos/and.webm");
+					clips.push("videos/names/" + name1 + ".webm");
+				} else {
+					clips.push("videos/names/" + name1 + ".webm");
+					clips.push("videos/and.webm");
+					clips.push("videos/names/" + name2 + ".webm");
+				}
+				clips.push("videos/anniversary.webm");
+				break;
 
+			case "birthday_type01":
+        document.getElementById("name2selector").style.display = "none";
+				clips.push("videos/birthday_type01_01.webm");
+				clips.push("videos/names/" + name1 + ".webm");
+				clips.push("videos/birthday_type01_02.webm");
+				clips.push("videos/names/" + name1 + ".webm");
+				clips.push("videos/birthday_type01_03.webm");
+				break;
+			
+			case "birthday_type02":
+				clips.push("videos/birthday_type02_01.webm");
+				clips.push("videos/names/" + name1 + ".webm");
+				clips.push("videos/birthday_type02_02.webm");
+				clips.push("videos/names/" + name1 + ".webm");
+				clips.push("videos/birthday_type02_03.webm");
+				break;
+		}
+		generateMedia(clips);
+	}
+}
