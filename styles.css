@@ -48,7 +48,7 @@ body {
 #start-page {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-direction: column;
     width: 100%;
     height: 100%;
@@ -61,7 +61,6 @@ body {
     justify-content: center;
     flex-direction: column;
     font-family: 'Oswald', sans-serif;
-    margin-top: 15px;
 }
 
 
@@ -112,7 +111,7 @@ body {
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 3vh;
+    /* margin-bottom: 3vh; */
     font-family: 'SRF2';
     color: white;
     font-size: 9vh;
@@ -122,6 +121,10 @@ body {
 }
 
 #button:hover {
+    background-color: #8b2d56;
+}
+
+#download-button:hover {
     background-color: #8b2d56;
 }
 
@@ -322,6 +325,7 @@ video {
     bottom: 0;
     right: 0;
     position: absolute;
+    pointer-events: none;
 }
 
 #jerma-corner > video {
