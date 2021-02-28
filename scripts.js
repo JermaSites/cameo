@@ -5,7 +5,9 @@ function slideOut() {
   document.getElementById("fake-box").style.pointerEvents = "revert";
 }
 
-var keyframes = "@keyframes slideJS {0% {transform: translate(0px);}50% {transform: translate(-" + (document.getElementById("sliding-background").offsetWidth - Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)) + "px);}100% {transform: translate(0px);}}";
+var keyframes = "@keyframes slideJS {0% {transform: translate(0px);}50% {transform: translate(-" + (document.getElementById("sliding-background").offsetWidth - Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)) + "px);}100% {transform: translate(0px);}}"; //congrats!! you found the ugliest line of code in this whole project!!!
+//this is a just a thing so that the background never overflows
+//its awful i know 
 var s = document.createElement( 'style' );
 s.innerHTML = keyframes;
 document.head.appendChild(s);
@@ -17,8 +19,8 @@ document.getElementById("sliding-background").style.animationIterationCount = "i
 
 const names = ["angus.webm","david.webm","josephine.webm","kennedy.webm","luna.webm","nick.webm","xavier.webm","yusef.webm","zachary.webm","alice.webm","alec.webm","alex.webm","alexander.webm","amy.webm","andrew.webm","andy.webm","anthony.webm","arthur.webm","ava.webm","avery.webm","becca.webm","benjamin.webm","briana.webm","brooklyn.webm","caiden.webm","caitlyn.webm","carter.webm","case.webm","catherine.webm","charlotte.webm","client.webm","cody.webm","colton.webm","crystal.webm","daniel.webm","darrell.webm","dave.webm","davy.webm","delia.webm","delilah.webm","ed.webm","eddie.webm","edward.webm","elijah.webm","emily.webm","emma.webm","evan.webm","faith.webm","finn.webm","fredrick.webm","gary.webm","goku.webm","grace.webm","grayson.webm","greg.webm","harper.webm","henry.webm","isabella.webm","issac.webm","jeremy.webm","jerry.webm","jesse.webm","joe.webm","john.webm","joseph.webm","josh.webm","joshua.webm","julie.webm","keith.webm","kyle.webm","lauren.webm","laurence.webm","liam.webm","lilly.webm","logan.webm","louis.webm","luke.webm","mark.webm","mason.webm","matt.webm","matthew.webm","mia.webm","mike.webm","miranda.webm","natalie.webm","noah.webm","norah.webm","oliver.webm","olivia.webm","otto.webm","parker.webm","peter.webm","preston.webm","quinn.webm","riley.webm","rosie.webm","ryan.webm","sebastian.webm","sidney.webm","sophia.webm","steve.webm","steven.webm","taylor.webm","thanos.webm","theodore.webm","tiffany.webm","trevor.webm","tyler.webm","unique.webm","uriel.webm","vanellope.webm","victor.webm","victoria.webm","vincent.webm","william.webm","willow.webm","yuritzi.webm","zain.webm","zimena.webm","zoe.webm"].sort();
 const heyNames = ["angus.webm","david.webm","josephine.webm","kennedy.webm","luna.webm","nick.webm","paul.webm","xavier.webm","yusef.webm","zachary.webm"];
-// This stuff is used to generate the above arrays using brfs and browserify
 
+// This stuff is used to generate the above arrays using brfs and browserify
 // const fs = require('fs');
 // const names = fs.readdirSync('videos/names').sort();
 // const heyNames = fs.readdirSync('videos/names/hey');
