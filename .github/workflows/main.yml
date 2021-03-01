@@ -1,8 +1,6 @@
 name: Purge Cloudflare Cache
 on:
-   push:
-    branches:
-      - main
+   page_build
 
 jobs:
   deploy:
