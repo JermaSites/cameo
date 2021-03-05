@@ -36,11 +36,12 @@ const heyNames = ["bernie.webm","angus.webm","david.webm","josephine.webm","kenn
 // const heyNames = fs.readdirSync('videos/names/hey');
 
 
-const capitalize = (s) => { //stolen from https://flaviocopes.com/how-to-uppercase-first-letter-javascript/
+/* const capitalize = (s) => { //stolen from https://flaviocopes.com/how-to-uppercase-first-letter-javascript/
 	if (typeof s !== 'string') return ''
 	return s.charAt(0).toUpperCase() + s.slice(1)
-}
+} */
 
+/* 
 for(var i = 0; i < names.length; i++) {
 	var nameWithoutExtension = names[i].split('.').slice(0, -1).join('.');
 	var newOption = document.createElement("option");
@@ -55,8 +56,7 @@ for(var i = 0; i < names.length; i++) {
 	newOption.value = nameWithoutExtension;
 	newOption.innerHTML = capitalize(nameWithoutExtension);
 	document.getElementById("name2").appendChild(newOption); //apparently you cant just append an object to multiple elements
-}
-
+} */
 
 async function generateMedia(urls) { //https://stackoverflow.com/a/57652610
 
@@ -181,11 +181,3 @@ function closebox() {
 function about() {
   document.getElementById("about").style.display = "flex";
 }
-
-$(document).ready(function() {
-    $('.name').select2();
-});
-
-$(document).ready(function() {
-    $('.name2').select2();
-});
