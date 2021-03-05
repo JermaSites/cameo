@@ -36,18 +36,18 @@ const heyNames = ["bernie.webm","angus.webm","david.webm","josephine.webm","kenn
 // const heyNames = fs.readdirSync('videos/names/hey');
 
 
-/* const capitalize = (s) => { //stolen from https://flaviocopes.com/how-to-uppercase-first-letter-javascript/
+const capitalize = (s) => { //stolen from https://flaviocopes.com/how-to-uppercase-first-letter-javascript/
 	if (typeof s !== 'string') return ''
 	return s.charAt(0).toUpperCase() + s.slice(1)
-} */
+} 
 
-/* 
+
 for(var i = 0; i < names.length; i++) {
 	var nameWithoutExtension = names[i].split('.').slice(0, -1).join('.');
 	var newOption = document.createElement("option");
 	newOption.value = nameWithoutExtension;
 	newOption.innerHTML = capitalize(nameWithoutExtension);
-	document.getElementById("name1").appendChild(newOption);
+	document.getElementById("nameone").appendChild(newOption);
 }
 
 for(var i = 0; i < names.length; i++) {
@@ -55,8 +55,8 @@ for(var i = 0; i < names.length; i++) {
 	var newOption = document.createElement("option");
 	newOption.value = nameWithoutExtension;
 	newOption.innerHTML = capitalize(nameWithoutExtension);
-	document.getElementById("name2").appendChild(newOption); //apparently you cant just append an object to multiple elements
-} */
+	document.getElementById("nametwo").appendChild(newOption); //apparently you cant just append an object to multiple elements
+}
 
 async function generateMedia(urls) { //https://stackoverflow.com/a/57652610
 
@@ -124,8 +124,8 @@ function evaluateMedia() {
   video.src = "";
 
 	type = document.getElementById("type").value;
-	name1 = document.getElementById("name1").value;
-	name2 = document.getElementById("name2").value;
+	name1 = document.getElementById("nameone").value;
+	name2 = document.getElementById("nametwo").value;
   
 	if (type != "" && name1 != "") {
 		var clips = new Array();
