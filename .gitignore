@@ -114,5 +114,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-videos/out.mp4
+server/videos
+server/serve
 serve/*
