@@ -8,8 +8,8 @@ const cors = require('cors');
 app.use(cors());
 
 //startup stuff for reading directories and storing them lol
-const names = fs.readdirSync('videos/names');
-const heyNames = fs.readdirSync('videos/names/hey');
+const names = fs.readdirSync('../videos/names');
+const heyNames = fs.readdirSync('../videos/names/hey');
 
 var serveDir = "./serve";
 if (!fs.existsSync(serveDir)){
@@ -73,10 +73,8 @@ app.get('/', (req, res) => {
 		
 		// FFMpeg doesn't like relative urls, especially in 3rd-party modules, so we'll convert them to absolute instead
 		clips = clips.map(i => {
-			return {
-				i.fileName = __dirname + "/" + i.fileName;
-				return i;
-			};	
+			i.fileName = __dirname + "/" + i.fileName;
+			return i;
 		});
 		
 		videoConcat({
