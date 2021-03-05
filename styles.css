@@ -524,3 +524,23 @@ a {
 #about-button:hover {
     background-color:#289484;
 }
+
+
+.select2-container {
+    min-width: 150px;
+    min-height: 100px;
+    color: white;
+    background-color: #8b2d56;
+    border-radius: 25px;
+    font-size: 5vh;
+    font-family: 'Oswald', sans-serif;
+    border: none;
+    text-align: center;
+    text-align-last: center;
+    -webkit-appearance: none;
+    font-family: 'SRF2';
+    -moz-appearance: none;
+    width: 20%;
+    cursor: pointer;
+
+}
