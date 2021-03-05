@@ -181,3 +181,11 @@ function closebox() {
 function about() {
   document.getElementById("about").style.display = "flex";
 }
+
+$(document).ready(function() {
+    $('.name').select2();
+});
+
+$(document).ready(function() {
+    $('.name2').select2();
+});
