@@ -1,9 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
+/* oswald-regular - latin */
+@font-face {
+    font-family: 'Oswald';
+    font-style: normal;
+    font-weight: 400;
+    src:
+        url('../fonts/oswald-v36-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+        url('../fonts/oswald-v36-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* oswald-700 - latin */
+  @font-face {
+    font-family: 'Oswald';
+    font-style: normal;
+    font-weight: 700;
+    src:
+        url('../fonts/oswald-v36-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+        url('../fonts/oswald-v36-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
 
 @font-face {
     font-family: 'SRF2';
-    src: url('SharkRandomFunnyness2.woff2') format('woff2'),
-        url('SharkRandomFunnyness2.woff') format('woff');
+    src:
+        url('../fonts/SharkRandomFunnyness2.woff2') format('woff2'),
+        url('../fonts/SharkRandomFunnyness2.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
