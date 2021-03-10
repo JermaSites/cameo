@@ -173,11 +173,3 @@ function evaluateMedia() {
 		generateMedia(clips);
 	}
 }
-
-function closebox() {
-  document.getElementById("about").style.display = "none";
-}
-
-function about() {
-  document.getElementById("about").style.display = "flex";
-}
