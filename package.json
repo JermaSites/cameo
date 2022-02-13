@@ -20,8 +20,8 @@
     "brfs": "^2.0.2",
     "browserify": "^17.0.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.17.2",
     "lodash": "^4.17.21",
-    "video-stitch": "^1.6.0"
+    "video-stitch": "^1.7.1"
   }
 }
