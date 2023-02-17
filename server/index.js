@@ -17,6 +17,10 @@ if (!fs.existsSync(serveDir)){
 }
 
 app.get('/', (req, res) => {
+	if(req.query.name1 === undefined) {
+		res.send("test successful");
+		return;
+	}
 	var clips = new Array();
 	var outputNameAsString = [req.query.type, req.query.name1, req.query.name2].filter(Boolean).join("_") + ".webm"; //we use .filter and .join instead of concatenate because name2 might not always exist
 	
