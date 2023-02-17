@@ -8,8 +8,8 @@ const cors = require('cors');
 app.use(cors());
 
 //startup stuff for reading directories and storing them lol
-const names = fs.readdirSync('../videos/names');
-const heyNames = fs.readdirSync('../videos/names/hey');
+const names = fs.readdirSync('./videos/names');
+const heyNames = fs.readdirSync('./videos/names/hey');
 
 var serveDir = "./serve";
 if (!fs.existsSync(serveDir)){
@@ -36,35 +36,35 @@ app.get('/', (req, res) => {
 		switch (req.query.type) {
 			case "anniversary":
 				if (heyNames.includes(req.query.name1 + '.webm')) { //we always want anniversary videos to start with "hey" if we can
-					clips.push({"fileName": "../videos/names/hey/" + req.query.name1 + ".webm"}); //rather than stripping every single file name in the array of the phrase ".webm", lets just compare with .webm added
-					clips.push({"fileName": "../videos/and.webm"});
-					clips.push({"fileName": "../videos/names/" + req.query.name2 + ".webm"});
+					clips.push({"fileName": "videos/names/hey/" + req.query.name1 + ".webm"}); //rather than stripping every single file name in the array of the phrase ".webm", lets just compare with .webm added
+					clips.push({"fileName": "videos/and.webm"});
+					clips.push({"fileName": "videos/names/" + req.query.name2 + ".webm"});
 				} else if (heyNames.includes(req.query.name2 + '.webm')) {
-					clips.push({"fileName": "../videos/names/hey/" + req.query.name2 + ".webm"});
-					clips.push({"fileName": "../videos/and.webm"});
-					clips.push({"fileName": "../videos/names/" + req.query.name1 + ".webm"});
+					clips.push({"fileName": "videos/names/hey/" + req.query.name2 + ".webm"});
+					clips.push({"fileName": "videos/and.webm"});
+					clips.push({"fileName": "videos/names/" + req.query.name1 + ".webm"});
 				} else {
-					clips.push({"fileName": "../videos/names/" + req.query.name1 + ".webm"});
-					clips.push({"fileName": "../videos/and.webm"});
-					clips.push({"fileName": "../videos/names/" + req.query.name2 + ".webm"});
+					clips.push({"fileName": "videos/names/" + req.query.name1 + ".webm"});
+					clips.push({"fileName": "videos/and.webm"});
+					clips.push({"fileName": "videos/names/" + req.query.name2 + ".webm"});
 				}
-				clips.push({"fileName": "../videos/anniversary.webm"});
+				clips.push({"fileName": "videos/anniversary.webm"});
 				break;
 
 			case "birthday_type01":
-				clips.push({"fileName": "../videos/birthday_type01_01.webm"});
-				clips.push({"fileName": "../videos/names/" + req.query.name1 + ".webm"});
-				clips.push({"fileName": "../videos/birthday_type01_02.webm"});
-				clips.push({"fileName": "../videos/names/" + req.query.name1 + ".webm"});
-				clips.push({"fileName": "../videos/birthday_type01_03.webm"});
+				clips.push({"fileName": "videos/birthday_type01_01.webm"});
+				clips.push({"fileName": "videos/names/" + req.query.name1 + ".webm"});
+				clips.push({"fileName": "videos/birthday_type01_02.webm"});
+				clips.push({"fileName": "videos/names/" + req.query.name1 + ".webm"});
+				clips.push({"fileName": "videos/birthday_type01_03.webm"});
 				break;
 			
 			case "birthday_type02":
-				clips.push({"fileName": "../videos/birthday_type02_01.webm"});
-				clips.push({"fileName": "../videos/names/" + req.query.name1 + ".webm"});
-				clips.push({"fileName": "../videos/birthday_type02_02.webm"});
-				clips.push({"fileName": "../videos/names/" + req.query.name1 + ".webm"});
-				clips.push({"fileName": "../videos/birthday_type02_03.webm"});
+				clips.push({"fileName": "videos/birthday_type02_01.webm"});
+				clips.push({"fileName": "videos/names/" + req.query.name1 + ".webm"});
+				clips.push({"fileName": "videos/birthday_type02_02.webm"});
+				clips.push({"fileName": "videos/names/" + req.query.name1 + ".webm"});
+				clips.push({"fileName": "videos/birthday_type02_03.webm"});
 				break;
 		}
 
