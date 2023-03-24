@@ -17,7 +17,7 @@ if (!fs.existsSync(serveDir)){
 }
 
 app.get('/', (req, res) => {
-	if(req.query.name1 === undefined) {
+	if(req.query.name1 === undefined || req.query.type === undefined) {
 		res.send("test successful");
 		return;
 	}
@@ -83,7 +83,7 @@ app.get('/', (req, res) => {
 		});
 		
 		videoConcat({
-			silent: true, // if set to false, gives detailed output on console
+			silent: false, // if set to false, gives detailed output on console
 			overwrite: true //lets keep this at true just on the off chance that checking if the file exists fails
 		})
 		.clips(clips)
